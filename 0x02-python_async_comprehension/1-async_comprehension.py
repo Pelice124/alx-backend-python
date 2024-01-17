@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
-"""execute multiple coroutines at the same time with async"""
-
-import asyncio
+"""10 random numbers using an async comprehensing over"""
 from typing import List
+async_generator = __import__('0-async_generator').async_generator
 
-wait_random = __import__('0-basic_async_syntax').wait_random
 
-
-async def wait_n(n: int, max_delay: int) -> List[float]:
+async def async_comprehension() -> List[float]:
     """
-    2 int arguments (in this order): n and max_delay
-    async routine called wait_n
+    async_comprehension - function that takes no arguments
+    Return: 10 random numbers
     """
-
-    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
-    return [await task for task in asyncio.as_completed(tasks)]
+    rslt = [i async for i in async_generator()]
+    return rslt
